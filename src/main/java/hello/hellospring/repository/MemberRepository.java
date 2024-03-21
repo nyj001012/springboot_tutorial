@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public interface MemberRepository {
     Member save(Member member);
-    Optional<Member> findById(AtomicLong id);
+    Optional<Member> findById(Long id);
     Optional<Member> findByName(String name);
     List<Member> findAll();
 }

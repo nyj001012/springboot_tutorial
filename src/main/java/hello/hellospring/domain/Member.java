@@ -3,14 +3,14 @@ package hello.hellospring.domain;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Member {
-    private AtomicLong id;
+    private Long id;
     private String name;
 
-    public AtomicLong getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(AtomicLong id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

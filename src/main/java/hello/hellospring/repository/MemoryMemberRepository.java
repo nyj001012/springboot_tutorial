@@ -9,19 +9,19 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class MemoryMemberRepository implements MemberRepository {
-    private static ConcurrentHashMap<AtomicLong, Member> store = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<Long, Member> store = new ConcurrentHashMap<>();
     private static AtomicLong sequence = new AtomicLong(0);
 
     @Override
     public Member save(Member member) {
         sequence.incrementAndGet();
-        member.setId(sequence);
-        store.put(sequence, member);
+        member.setId(sequence.longValue());
+        store.put(sequence.longValue(), member);
         return member;
     }
 
     @Override
-    public Optional<Member> findById(AtomicLong id) {
+    public Optional<Member> findById(Long id) {
         return Optional.ofNullable(store.get(id));
     }
 
@@ -36,5 +36,10 @@ public class MemoryMemberRepository implements MemberRepository {
     @Override
     public List<Member> findAll() {
         return new ArrayList<Member>(store.values());
+    }
+
+    public void clearStore() {
+        store.clear();
+        sequence = new AtomicLong(0);
     }
 }
