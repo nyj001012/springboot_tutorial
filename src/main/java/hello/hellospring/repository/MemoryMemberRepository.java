@@ -9,7 +9,6 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Repository
 public class MemoryMemberRepository implements MemberRepository {
     private static ConcurrentHashMap<Long, Member> store = new ConcurrentHashMap<>();
     private static AtomicLong sequence = new AtomicLong(0);
