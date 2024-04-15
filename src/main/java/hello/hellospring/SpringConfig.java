@@ -1,5 +1,6 @@
 package hello.hellospring;
 
+import hello.hellospring.domain.Member;
 import hello.hellospring.repository.*;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,22 +14,14 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 
-    private final DataSource dataSource;
-    private final EntityManager entityManager;
+    private final MemberRepository memberRepository;
 
-    @Autowired
-    public SpringConfig(DataSource dataSource, EntityManager entityManager) {
-        this.dataSource = dataSource;
-        this.entityManager = entityManager;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
-    }
-
-    @Bean
-    public MemberRepository memberRepository() {
-        return new JPAMemberRepository(entityManager);
+        return new MemberService(memberRepository);
     }
 }
