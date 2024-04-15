@@ -3,6 +3,7 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,7 @@ public class MemberService {
      * @param member 가입할 멤버 객체
      * @return 가입한 멤버 객체의 id
      */
+    @Transactional
     public Long join(Member member) {
         validateDuplicateMember(member);
 
