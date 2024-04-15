@@ -1,8 +1,10 @@
 package hello.hellospring.domain;
 
-import java.util.concurrent.atomic.AtomicLong;
+import javax.persistence.*;
 
+@Entity
 public class Member {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
